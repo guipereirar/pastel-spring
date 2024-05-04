@@ -1,6 +1,7 @@
 package br.edu.senaisp.Pastel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,19 +29,24 @@ public class PastelController {
 		return tmp;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/busca/{id}")
 	public String BuscaPorId(@PathVariable long id) {
 		return repository.buscaPorId(id).getSabor();
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/altera/{id}")
 	public String Altera(@RequestBody Pastel pastel, @PathVariable long id) {
 		return String.valueOf(repository.altera(pastel, id));
 	}
 	
-	@PostMapping()
+	@PostMapping("/insere")
 	public String Insere(@RequestBody Pastel pastel) {
 		return String.valueOf(repository.insere(pastel));
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String Delete(@RequestBody Pastel pastel, @PathVariable long id) {
+		return String.valueOf(repository.exclui(id));
 	}
 	
 }

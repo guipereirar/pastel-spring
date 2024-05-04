@@ -13,6 +13,6 @@ public interface ICrud {
 	
 	public int insere(Pastel pastel);
 	
-	public boolean exclui(long id);
+	public int exclui(long id);
 	
 }

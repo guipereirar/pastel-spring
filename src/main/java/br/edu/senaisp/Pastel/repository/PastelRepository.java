@@ -15,6 +15,7 @@ public class PastelRepository implements ICrud{
 	private String qrSelectById = "SELECT id, sabor FROM pastel WHERE id = ?";
 	private String qrUpdate = "UPDATE pastel SET sabor = ? WHERE id = ?";
 	private String qrInsert = "INSERT INTO pastel (id, sabor) VALUES (default, ?)";
+	private String qrDelete = "DELETE FROM pastel WHERE id = ?";
 
 	@Autowired
 	private JdbcTemplate jdbctemplate;
@@ -50,9 +51,9 @@ public class PastelRepository implements ICrud{
 	}
 
 	@Override
-	public boolean exclui(long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public int exclui(long id) {
+		Object[] params = {id};
+		return jdbctemplate.update(qrDelete, params);
 	}
 
 }
